@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Digital Pro</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #008080;
+            --secondary-color: #ff8c00;
+            --wa-color: #25d366;
+            --tele-color: #0088cc;
+            --bg-gradient: linear-gradient(135deg, rgba(160, 240, 240, 0.4), rgba(240, 160, 240, 0.4), rgba(240, 240, 160, 0.4));
+            --card-glass-bg: rgba(255, 255, 255, 0.8);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .glass-card {
+            background-color: var(--card-glass-bg);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 35px;
+            max-width: 850px;
+            width: 100%;
+        }
+
+        .product-image-section img {
+            width: 100%;
+            max-height: 230px;
+            border-radius: 15px;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .product-title {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: #111;
+        }
+
+        .product-price {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .discount-badge {
+            background-color: var(--secondary-color);
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .stock-badge {
+            background-color: #198754;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+
+        .product-desc-box {
+            background: rgba(0,0,0,0.03);
+            border-left: 4px solid var(--primary-color);
+            padding: 10px 15px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #444;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 1px solid rgba(0,0,0,0.12);
+            padding: 9px 12px;
+            font-size: 0.9rem;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0, 128, 128, 0.25);
+        }
+
+        .input-group-text {
+            border-radius: 10px 0 0 10px;
+            background-color: #f8f9fa;
+            border-color: rgba(0,0,0,0.12);
+            color: #777;
+        }
+
+        .order-btn {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white !important;
+            font-size: 0.9rem;
+        }
+
+        .wa-btn { background-color: var(--wa-color); }
+        .wa-btn:hover { background-color: #1ebe57; transform: translateY(-2px); }
+
+        .tele-btn { background-color: var(--tele-color); }
+        .tele-btn:hover { background-color: #0077b3; transform: translateY(-2px); }
+
+        .confirm-btn {
+            background-color: #17a2b8;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+        }
+
+        .confirm-btn:hover {
+            background-color: #138496;
+            transform: scale(1.01);
+        }
+
+        @media (max-width: 768px) {
+            .glass-card { padding: 20px; }
+            .product-title { font-size: 1.5rem; }
+            .product-price { font-size: 1.4rem; }
+            .row-product { flex-direction: column-reverse; }
+            .product-image-section { margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="glass-card shadow">
+    <div class="row row-product align-items-center">
+        <!-- Tampilan Produk Kiri -->
+        <div class="col-md-5 product-image-section text-center text-md-start">
+            <h1 class="product-title text-uppercase mb-1" id="viewNama">Alight Motion Pro</h1>
+            <div class="mb-2">
+                <span class="product-price" id="viewHarga">Rp 25.000</span>
+                <span class="stock-badge" id="viewStok"><i class="fas fa-boxes me-1"></i> Stok: 15</span>
+            </div>
+            
+            <div class="product-desc-box mb-3" id="viewDeskripsi">
+                Fitur lengkap tanpa watermark, unlock semua efek & preset pro.
+            </div>
+
+            <img id="viewGambar" src="https://via.placeholder.com/600x350/008080/fff.png?text=ALIGHT+MOTION+PRO" alt="Foto Produk">
+        </div>
+
+        <!-- Form Pemesanan Kanan -->
+        <div class="col-md-7 mt-4 mt-md-0">
+            <h3 class="fw-bold mb-3 text-uppercase text-center text-md-start fs-5">FORM PEMESANAN</h3>
+            
+            <form id="orderForm">
+                <!-- Dropdown Pilih Produk -->
+                <div class="mb-3">
+                    <label class="form-label">Pilih Produk Digital</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-box-open"></i></span>
+                        <select id="pilihProduk" class="form-select fw-bold text-success" required>
+                            <!-- Pilihan produk diisi otomatis oleh JS -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Nama Pembeli</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <input type="text" id="nama" class="form-control" placeholder="Nama kamu" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Email / ID Akun</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            <input type="text" id="email" class="form-control" placeholder="Email aktif" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 mb-4">
+                        <label class="form-label">Jumlah Pesanan</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-calculator"></i></span>
+                            <input type="number" id="jumlah" class="form-control" value="1" min="1" required>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-4">
+                        <label class="form-label">Order Via</label>
+                        <div class="input-group">
+                            <select id="platform" class="form-select" required>
+                                <option value="whatsapp" selected>WhatsApp</option>
+                                <option value="telegram">Telegram</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <div class="d-flex gap-2 mb-2">
+                        <a href="#" class="order-btn wa-btn w-50" id="waOrder"><i class="fab fa-whatsapp me-1"></i> WhatsApp</a>
+                        <a href="#" class="order-btn tele-btn w-50" id="teleOrder"><i class="fab fa-telegram-plane me-1"></i> Telegram</a>
+                    </div>
+                    <button type="submit" class="order-btn confirm-btn shadow">PROSES PESANAN</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // === KONFIGURASI ADMIN ===
+    const NOMOR_WA = "6285151778865";      // Ganti nomor WA kamu (pake 62)
+    const USERNAME_TELE = "NocrAo";  // Ganti username Telegram kamu (tanpa @)
+
+    // === DAFTAR PRODUK & STOK (Ubah stok di sini) ===
+    const DAFTAR_PRODUK = {
+        "am-pro": {
+            nama: "Alight Motion Pro",
+            harga: 5000,
+            stok: 300,
+            deskripsi: "FITUR : PRIVATE, 1 TAHUN, GARANSI 6 BULAN, SUPPORT ALL PRESET.",
+            gambar: "https://cdn.phototourl.com/free/2026-09-01-104cd389-923f-4b15-8658-a0e27e016b1a.png"
+        },
+        "capcut-pro": {
+            nama: "CapCut Pro",
+            harga: 25000,
+            stok: 0,
+            deskripsi: "Fitur Pro terbuka,No Wm.",
+            gambar: "https://cdn.phototourl.com/free/2026-09-01-8d259734-6b88-4729-80b8-3a64a5d54e7b.jpg"
+        },
+        "wink": {
+            nama: "Wink 7-DAY",
+            harga: 6000,
+            stok: 0,
+            deskripsi: "Unlock elemen Pro, GARANSI KALO GAADA LANGGANAN PLAYSTORE.",
+            gambar: "https://cdn.phototourl.com/free/2026-09-01-6f86d42c-c237-40b2-ad30-5a4df7078a65.webp"
+        }
+    };
+
+    const selectProduk = document.getElementById('pilihProduk');
+
+    // Populate Dropdown Produk Otomatis
+    for (let key in DAFTAR_PRODUK) {
+        let opt = document.createElement('option');
+        opt.value = key;
+        opt.innerHTML = `${DAFTAR_PRODUK[key].nama} - Rp ${DAFTAR_PRODUK[key].harga.toLocaleString('id-ID')}`;
+        selectProduk.appendChild(opt);
+    }
+
+    // Update Tampilan Produk Saat Diganti
+    function updateTampilanProduk(key) {
+        const prod = DAFTAR_PRODUK[key];
+        document.getElementById('viewNama').innerText = prod.nama;
+        document.getElementById('viewHarga').innerText = `Rp ${prod.harga.toLocaleString('id-ID')}`;
+        
+        // Update Tampilan Stok
+        const viewStok = document.getElementById('viewStok');
+        if (prod.stok > 0) {
+            viewStok.className = "stock-badge";
+            viewStok.innerHTML = `<i class="fas fa-boxes me-1"></i> Stok: ${prod.stok}`;
+        } else {
+            viewStok.className = "stock-badge bg-danger";
+            viewStok.innerHTML = `<i class="fas fa-times-circle me-1"></i> Stok Habis`;
+        }
+
+        document.getElementById('viewDeskripsi').innerText = prod.deskripsi;
+        document.getElementById('viewGambar').src = prod.gambar;
+
+        // Batasi Max Input Jumlah Sesuai Stok
+        const inputJumlah = document.getElementById('jumlah');
+        inputJumlah.max = prod.stok;
+        if (parseInt(inputJumlah.value) > prod.stok) {
+            inputJumlah.value = prod.stok > 0 ? prod.stok : 1;
+        }
+    }
+
+    selectProduk.addEventListener('change', function() {
+        updateTampilanProduk(this.value);
+    });
+
+    updateTampilanProduk(selectProduk.value);
+
+    // Kirim Pesan Form
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const keyProduk = selectProduk.value;
+        const prod = DAFTAR_PRODUK[keyProduk];
+
+        if (prod.stok <= 0) {
+            alert("Maaf, stok produk ini sedang habis.");
+            return;
+        }
+
+        const nama = document.getElementById('nama').value;
+        const email = document.getElementById('email').value;
+        const jumlah = parseInt(document.getElementById('jumlah').value);
+        const platform = document.getElementById('platform').value;
+
+        const totalHarga = jumlah * prod.harga;
+        const totalFormat = totalHarga.toLocaleString('id-ID');
+
+        let pesan = `Halo Min, saya mau order produk digital:\n\n` +
+                    `🛒 *Produk:* ${prod.nama}\n` +
+                    `📦 *Jumlah:* ${jumlah} Pcs/Akun\n` +
+                    `💰 *Total Harga:* Rp ${totalFormat}\n` +
+                    `👤 *Nama:* ${nama}\n` +
+                    `📧 *Email/ID:* ${email}\n\n` +
+                    `Mohon info pembayaran/QRIS nya ya. Terima kasih!`;
+
+        const pesanEncoded = encodeURIComponent(pesan);
+
+        let linkTujuan = "";
+        if (platform === "whatsapp") {
+            linkTujuan = `https://wa.me/${NOMOR_WA}?text=${pesanEncoded}`;
+        } else if (platform === "telegram") {
+            linkTujuan = `https://t.me/${USERNAME_TELE}?text=${pesanEncoded}`;
+        }
+
+        window.location.href = linkTujuan;
+    });
+
+    document.getElementById('waOrder').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('platform').value = 'whatsapp';
+        document.querySelector('.confirm-btn').click();
+    });
+
+    document.getElementById('teleOrder').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('platform').value = 'telegram';
+        document.querySelector('.confirm-btn').click();
+    });
+</script>
+
+</body>
+</html>
